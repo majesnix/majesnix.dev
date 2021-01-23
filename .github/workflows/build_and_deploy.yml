@@ -1,0 +1,36 @@
+name: CD
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install pnpm
+        run: curl -L https://unpkg.com/@pnpm/self-installer | node
+
+      - name: Install deps
+        run: pnpm i
+
+      - name: build website
+        run: pnpm run build
+
+      - name: deploy website
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: ${{ secrets.REMOTE_USER }}
+          server: ${{ secrets.REMOTE_HOST }}
+          ssh_private_key: ${{ secrets.SERVER_SSH_KEY }}
+          local_path: "./build/*"
+          remote_path: ${{ secrets.REMOTE_TARGET }}
+          args: "-o ConnectTimeout=5"
