@@ -1,20 +1,21 @@
-const Header = () => {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 32,
-        left: 80,
-        color: "#fbfbfb",
-        fontSize: "18px",
-        fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-        fontWeight: 300,
-        lineHeight: "30px",
-      }}
-    >
-      {process.env.REACT_APP_NAME}
-    </div>
-  );
-};
+import styled from "styled-components";
+
+const HeaderComp = styled.div`
+  position: absolute;
+  top: 32px;
+  left: 80px;
+  color: #fbfbfb;
+  fontsize: 18px;
+  fontfamily: 'Roboto", "Helvetica", "Arial", sans-serif';
+  fontweight: 300;
+  lineheight: 30px;
+
+  @media (max-width: 768px) {
+    top: 32px;
+    left: 40px;
+  }
+`;
+
+const Header = () => <HeaderComp>{process.env.REACT_APP_NAME}</HeaderComp>;
 
 export default Header;
