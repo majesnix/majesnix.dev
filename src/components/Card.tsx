@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardComp = styled.div`
+const Card = styled.div`
   height: calc(100% - 35px);
   width: calc(100% - 64px);
   color: #999;
@@ -24,9 +24,5 @@ const CardComp = styled.div`
     padding: 16px;
   }
 `;
-
-const Card: React.FC = (props) => {
-  return <CardComp>{props.children}</CardComp>;
-};
 
 export default Card;

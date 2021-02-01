@@ -1,22 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-
-import Header from "./components/Header";
+import Background from "./components/Background";
 import Card from "./components/Card";
 import Coin from "./components/Coin";
-import Background from "./components/Background";
-import Name from "./components/Name";
-import Subtext from "./components/Subtext";
-import GithubIcon from "./components/GithubIcon";
+import Container from "./components/Container";
 import Description from "./components/Description";
+import GithubIcon from "./components/GithubIcon";
+import Header from "./components/Header";
+import Name from "./components/Name";
+import React from "react";
+import Subtext from "./components/Subtext";
 
-//@ts-ignore
+// @ts-ignore
 import dcl from "./assets/images/dcl.png";
-
-const Container = styled.div`
-  min-height: 100vh;
-  background-color: #121212;
-`;
 
 function App() {
   return (

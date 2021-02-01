@@ -1,8 +1,8 @@
-//@ts-ignore
+// @ts-ignore
 import image from "../assets/images/town.jpg";
 import styled from "styled-components";
 
-export default styled.div`
+const Background = styled.div`
   height: 380px;
   position: relative;
   background-position: center center;
@@ -15,3 +15,5 @@ export default styled.div`
   width: 100%;
   background-image: url(${image});
 `;
+
+export default Background;
