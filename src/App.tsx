@@ -28,7 +28,9 @@ function App() {
           <br />
           <span style={{ fontWeight: "bold" }}>[ Javascript/Typescript ]</span>
           <br />
-          <span style={{ fontWeight: "normal" }}>[ Learning: C#, Rust ]</span>
+          <span style={{ fontWeight: "normal" }}>
+            [ Learning: Scala, C#, Rust ]
+          </span>
           <br />
           <br />
           I&apos;m also interested in:
