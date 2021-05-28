@@ -4,7 +4,6 @@ import Coin from "./components/Coin";
 import Container from "./components/Container";
 import Description from "./components/Description";
 import GithubIcon from "./components/GithubIcon";
-import Header from "./components/Header";
 import Name from "./components/Name";
 import React from "react";
 import Subtext from "./components/Subtext";
@@ -16,7 +15,6 @@ function App() {
   return (
     <Container>
       <Background />
-      <Header />
       <Card>
         <Coin src={dcl} />
         <Name>{process.env.REACT_APP_NAME}</Name>
@@ -38,7 +36,7 @@ function App() {
           <br />
           <span style={{ fontWeight: "bold" }}>
             [ Administration (Windows/Linux), Nginx, Docker, Azure, Azure
-            DevOps, AWS ]
+            DevOps, AWS, My Hamster ]
           </span>
         </Description>
       </Card>

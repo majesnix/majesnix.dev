@@ -1,5 +1,5 @@
 // @ts-ignore
-import image from "../assets/images/town.jpg";
+import image from "../assets/images/yui.jpg";
 import styled from "styled-components";
 
 const Background = styled.div`
@@ -12,6 +12,7 @@ const Background = styled.div`
   border: 0;
   display: flex;
   align-items: center;
+  background-position: 0px -400px;
   width: 100%;
   background-image: url(${image});
 `;
