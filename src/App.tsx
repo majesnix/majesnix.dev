@@ -24,11 +24,11 @@ function App() {
           I write code as a hobby and I write code as my job.
           <br />
           <br />
-          <span style={{ fontWeight: "bold" }}>[ Javascript/Typescript ]</span>
-          <br />
-          <span style={{ fontWeight: "normal" }}>
-            [ Learning: Scala ]
+          <span style={{ fontWeight: "bold" }}>
+            [ Typescript, React, Angular ]
           </span>
+          <br />
+          <span style={{ fontWeight: "normal" }}>[ Learning: Scala ]</span>
           <br />
           <br />
           I&apos;m also interested in:
