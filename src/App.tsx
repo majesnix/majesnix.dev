@@ -25,7 +25,7 @@ function App() {
           <br />
           <br />
           <span style={{ fontWeight: "bold" }}>
-            [ Typescript, Node.js, React, Angular, Next.js ]
+            [ Typescript, Node.js, React, Angular, Nest.js ]
           </span>
           <br />
           <span style={{ fontWeight: "normal" }}>[ Learning: Scala ]</span>
