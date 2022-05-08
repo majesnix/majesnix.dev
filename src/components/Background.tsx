@@ -1,5 +1,5 @@
 // @ts-ignore
-import image from "../assets/images/yui.png";
+import image from "../assets/images/chibi.JPG";
 import styled from "styled-components";
 
 const Background = styled.div`
