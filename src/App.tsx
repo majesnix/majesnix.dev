@@ -25,10 +25,10 @@ function App() {
           <br />
           <br />
           <span style={{ fontWeight: "bold" }}>
-            [ Typescript, Node.js, React, Angular, Nest.js ]
+            [ Typescript, Node.js, React, Angular, Nest.js, Scala ]
           </span>
           <br />
-          <span style={{ fontWeight: "normal" }}>[ Learning: Scala ]</span>
+          <span style={{ fontWeight: "normal" }}>[ Learning: - ]</span>
           <br />
           <br />
           I&apos;m also interested in:
@@ -36,7 +36,7 @@ function App() {
           <br />
           <span style={{ fontWeight: "bold" }}>
             [ Administration (Windows/Linux), Nginx, Docker, Azure, Azure
-            DevOps, AWS, My Hamster ]
+            DevOps, AWS, Kubernetes, My Hamster ]
           </span>
         </Description>
       </Card>
