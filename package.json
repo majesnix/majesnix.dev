@@ -1,6 +1,6 @@
 {
   "name": "majesnix.dev-new",
-  "version": "1.0.22",
+  "version": "1.0.24",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
