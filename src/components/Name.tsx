@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "solid-styled-components";
 
-const Name = styled.h3`
+const Name = styled("h3")`
   color: #999;
   margin: 1.75rem 0 0.875rem;
   display: inline-block;

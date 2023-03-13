@@ -1,15 +1,13 @@
-// @ts-ignore
-import image from "../assets/images/chibi.JPG";
-import styled from "styled-components";
+import bgImage from "../assets/images/chibi.jpg";
+import { styled } from "solid-styled-components";
 
-const Background = styled.div`
+const Background = styled("div")`
   height: 380px;
   background-position-x: 50%;
   background-position-y: 60%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(${image});
-  }
+  background-image: url(${bgImage});
 `;
 
 export default Background;

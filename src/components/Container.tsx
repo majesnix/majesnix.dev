@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "solid-styled-components";
 
-const Container = styled.div`
+const Container = styled("div")`
   min-height: 100vh;
   background-color: #121212;
 `;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "solid-styled-components";
 
-const Subtext = styled.h6`
+const Subtext = styled("h6")`
   color: #999;
   margin: 1.2rem 0 0.875rem;
   display: inline-block;

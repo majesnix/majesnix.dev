@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "solid-styled-components";
 
-const Card = styled.div`
+const Card = styled("div")`
   height: calc(100% - 35px);
   width: calc(100% - 64px);
   color: #999;
@@ -15,7 +15,6 @@ const Card = styled.div`
   align-items: center;
   flex-direction: column;
   padding-bottom: 32px;
-
   @media (max-width: 768px) {
     width: calc(100% - 96px);
     margin-top: -80px;

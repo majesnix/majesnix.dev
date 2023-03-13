@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "solid-styled-components";
 
-const Coin = styled.img`
+const Coin = styled("img")`
   border-radius: 50%;
   box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
     0 8px 10px -5px rgba(0, 0, 0, 0.2);

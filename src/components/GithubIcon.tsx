@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FaBrandsGithub } from "solid-icons/fa";
 
 const GithubIcon = () => {
   return (
@@ -8,11 +7,11 @@ const GithubIcon = () => {
       target="_blank"
       rel="noreferrer"
       style={{
-        textDecoration: "none",
+        "text-decoration": "none",
         color: "#999",
       }}
     >
-      <FontAwesomeIcon icon={faGithub} size="2x" />
+      <FaBrandsGithub size={32} />
     </a>
   );
 };
