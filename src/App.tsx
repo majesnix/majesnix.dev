@@ -24,7 +24,7 @@ const App: Component = () => {
           <br />
           <br />
           <span style={{ "font-weight": "bold" }}>
-            [ Typescript, Node.js, React, Angular, Nest.js, Scala, Akka, Doobie
+            [ Typescript, Node.js, React, Angular, Nest.js, Scala, Pekko, Doobie
             ]
           </span>
           <br />
@@ -36,7 +36,7 @@ const App: Component = () => {
           <br />
           <span style={{ "font-weight": "bold" }}>
             [ Administration (Windows/Linux), Nginx, Docker, Azure, Azure
-            DevOps, AWS, Kubernetes, My Hamster ]
+            DevOps, AWS, Kubernetes, Github Actions, My Hamster ]
           </span>
         </Description>
       </Card>
