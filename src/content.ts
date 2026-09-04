@@ -22,6 +22,8 @@ export const stacks: TagGroup[] = [
   {
     label: "Daily drivers",
     items: [
+      tag("AI"),
+      tag("Claude Code"),
       tag("TypeScript"),
       tag("Node.js"),
       tag("React"),
