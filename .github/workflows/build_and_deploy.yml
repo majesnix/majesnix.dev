@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -29,23 +30,34 @@ jobs:
       - name: Build website
         run: pnpm build
 
-      - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --delete
+      - name: Upload to S3
         env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET_NAME }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: "dist"
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          BUCKET: ${{ secrets.AWS_BUCKET_NAME }}
+        run: |
+          aws s3 sync dist "s3://$BUCKET" --delete --acl public-read
 
-      # Invalidate Cloudfront (this action)
-      - name: Invalidate Cloudfront cache
-        uses: chetan/invalidate-cloudfront-action@master
+          # The CLI guesses Content-Type from the runner's MIME table, which may
+          # not know newer formats. Set them explicitly so browsers and the CDN
+          # get real types instead of binary/octet-stream.
+          fix_type() {
+            aws s3 cp "s3://$BUCKET/" "s3://$BUCKET/" --recursive \
+              --exclude "*" --include "*.$1" \
+              --content-type "$2" --metadata-directive REPLACE --acl public-read
+          }
+          fix_type avif image/avif
+          fix_type webp image/webp
+          fix_type woff2 font/woff2
+          fix_type webmanifest application/manifest+json
+
+      - name: Invalidate CloudFront cache
         env:
-          DISTRIBUTION: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION }}
-          PATHS: "/*"
-          AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION }}" \
+            --paths "/*"
