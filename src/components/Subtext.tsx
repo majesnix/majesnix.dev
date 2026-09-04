@@ -1,15 +1,13 @@
 import { styled } from "solid-styled-components";
 
-const Subtext = styled("h6")`
-  color: #999;
-  margin: 1.2rem 0 0.875rem;
-  display: inline-block;
-  position: relative;
-  min-height: 32px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: "Roboto Slab", "Times New Roman", serif;
-  text-decoration: none;
+const Subtext = styled("p")`
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
 `;
 
 export default Subtext;

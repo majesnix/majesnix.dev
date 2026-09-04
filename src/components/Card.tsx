@@ -1,26 +1,22 @@
 import { styled } from "solid-styled-components";
 
-const Card = styled("div")`
-  height: calc(100% - 35px);
-  width: calc(100% - 64px);
-  color: #999;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
-    0 15px 32px rgba(90, 90, 90, 0.2);
+const Card = styled("section")`
   position: relative;
-  margin-left: 32px;
-  margin-top: -40px;
-  background-color: #121212;
-  border-radius: 8px;
+  width: min(100% - 48px, 820px);
+  margin: -40px auto 0;
+  padding: 0 32px 40px;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  padding-bottom: 32px;
+  align-items: center;
+  text-align: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+
   @media (max-width: 768px) {
-    width: calc(100% - 96px);
-    margin-top: -80px;
-    margin-left: 32px;
-    margin-right: 32px;
-    padding: 16px;
+    width: calc(100% - 32px);
+    padding: 0 20px 32px;
   }
 `;
 

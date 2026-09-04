@@ -1,16 +1,13 @@
 import { styled } from "solid-styled-components";
 
-const Name = styled("h3")`
-  color: #999;
-  margin: 1.75rem 0 0.875rem;
-  display: inline-block;
-  position: relative;
-  margin-top: 32px;
-  min-height: 32px;
-  font-size: 30px;
+const Name = styled("h1")`
+  margin: 24px 0 6px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 38px);
   font-weight: 700;
-  font-family: "Roboto Slab", "Times New Roman", serif;
-  text-decoration: none;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
 `;
 
 export default Name;

@@ -1,8 +1,9 @@
 import { styled } from "solid-styled-components";
 
-const Container = styled("div")`
+const Container = styled("main")`
   min-height: 100vh;
-  background-color: #121212;
+  padding-bottom: 48px;
+  background-color: var(--bg);
 `;
 
 export default Container;

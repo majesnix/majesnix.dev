@@ -1,10 +1,11 @@
 import { styled } from "solid-styled-components";
 
-const Description = styled("div")`
-  color: #999;
-  margin: 1.071rem auto 0;
-  max-width: 600px;
-  text-align: center !important;
+const Description = styled("p")`
+  max-width: 560px;
+  margin: 20px auto 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-muted);
 `;
 
 export default Description;
