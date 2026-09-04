@@ -1,0 +1,70 @@
+---
+import { stacks } from "../content";
+---
+
+<div class="groups">
+  {
+    stacks.map((group) => (
+      <div>
+        <h2>{group.label}</h2>
+        <ul>
+          {group.items.map((tag) => (
+            <li class:list={["pill", { highlight: tag.highlight }]}>{tag.label}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 640px;
+    margin-top: 32px;
+  }
+
+  h2 {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pill {
+    padding: 6px 13px;
+    font-size: 14px;
+    line-height: 1.3;
+    color: var(--text);
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    transition: border-color var(--duration) var(--ease);
+  }
+
+  .pill:hover {
+    border-color: var(--accent);
+  }
+
+  .pill.highlight {
+    color: var(--accent);
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+  }
+</style>

@@ -61,6 +61,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Let the <img> inside <picture> take the layout role directly. */
+picture {
+  display: contents;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
