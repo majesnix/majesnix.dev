@@ -18,7 +18,44 @@ export const profile = {
   description:
     "Dominic Claßen, manager and software engineer. Scala and TypeScript by day and by night, plus one very photogenic hamster.",
   github: "https://github.com/majesnix",
+  repo: "https://github.com/majesnix/majesnix.dev",
 } as const;
+
+export type HamsterId = "chibi" | "kumo";
+
+export interface Hamster {
+  id: HamsterId;
+  name: string;
+  title: string;
+  alt: string;
+  /** object-position for the hero photo on desktop and on phones. */
+  focus: string;
+  focusMobile: string;
+  /** Horizontal center of the click target over the hamster, desktop. */
+  eggX: string;
+}
+
+/** One is picked at random per visit. The first one is the no-script fallback. */
+export const hamsters: Hamster[] = [
+  {
+    id: "chibi",
+    name: "Chibi",
+    title: "Chief Morale Officer",
+    alt: "A small white hamster on a wooden ramp, mid-snack.",
+    focus: "50% 60%",
+    focusMobile: "47% 50%",
+    eggX: "50%",
+  },
+  {
+    id: "kumo",
+    name: "Kumo",
+    title: "Head of Hideouts",
+    alt: "A small white hamster peeking out of an orange ceramic hideout on sand.",
+    focus: "63% 20%",
+    focusMobile: "86% 40%",
+    eggX: "63%",
+  },
+];
 
 export const stacks: TagGroup[] = [
   {

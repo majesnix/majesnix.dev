@@ -1,21 +1,64 @@
 ---
 import { Picture } from "astro:assets";
 
-import hero from "../assets/images/chibi.jpg";
+import chibi from "../assets/images/chibi.jpg";
+import kumo from "../assets/images/kumo.jpg";
+import { hamsters, type HamsterId } from "../content";
 
-const HERO_ALT = "A small white hamster on a wooden ramp, mid-snack.";
+const photos: Record<HamsterId, ImageMetadata> = { chibi, kumo };
+const fallback = hamsters[0];
 ---
 
 <div class="frame">
-  <Picture
-    src={hero}
-    formats={["avif", "webp"]}
-    widths={[640, 1024, 1440]}
-    sizes="100vw"
-    alt={HERO_ALT}
-    loading="eager"
-    fetchpriority="high"
-  />
+  {
+    hamsters.map((hamster) => (
+      <template data-hamster={hamster.id}>
+        <Picture
+          src={photos[hamster.id]}
+          formats={["avif", "webp"]}
+          widths={[640, 1024, 1440]}
+          sizes="100vw"
+          alt={hamster.alt}
+          loading="eager"
+          fetchpriority="high"
+          style={`--focus: ${hamster.focus}; --focus-mobile: ${hamster.focusMobile};`}
+        />
+        <details class="egg" style={`--egg-x: ${hamster.eggX};`}>
+          <summary>
+            <span class="sr-only">Meet the hamster</span>
+          </summary>
+          <p class="bubble">
+            <strong>{hamster.name}</strong>, {hamster.title}
+          </p>
+        </details>
+      </template>
+    ))
+  }
+
+  <!--
+    Picks one hamster per visit. Runs inline, right here, so the chosen photo
+    starts loading as early as a static one would. The only script on the page.
+  -->
+  <script is:inline>
+    (function () {
+      var frame = document.currentScript.parentNode;
+      var options = frame.querySelectorAll("template[data-hamster]");
+      var pick = options[Math.floor(Math.random() * options.length)];
+      frame.insertBefore(pick.content.cloneNode(true), options[0]);
+    })();
+  </script>
+
+  <noscript>
+    <Picture
+      src={photos[fallback.id]}
+      formats={["avif", "webp"]}
+      widths={[640, 1024, 1440]}
+      sizes="100vw"
+      alt={fallback.alt}
+      loading="eager"
+      style={`--focus: ${fallback.focus}; --focus-mobile: ${fallback.focusMobile};`}
+    />
+  </noscript>
 </div>
 
 <style>
@@ -31,7 +74,9 @@ const HERO_ALT = "A small white hamster on a wooden ramp, mid-snack.";
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 60%;
+    object-position: var(--focus, 50% 60%);
+    transform-origin: var(--focus, 50% 60%);
+    animation: drift 24s ease-in-out infinite alternate;
   }
 
   /* Dissolve the photo into the page so the card rises out of it. */
@@ -48,9 +93,107 @@ const HERO_ALT = "A small white hamster on a wooden ramp, mid-snack.";
     );
   }
 
+  /* Easter egg: an invisible click target over the hamster opens a speech bubble.
+     The <details> spans the whole hero so the bubble can sit at the top of the
+     photo; only the <summary> is the clickable area. */
+  .egg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  summary {
+    position: absolute;
+    top: 8%;
+    bottom: 12%;
+    width: 40%;
+    left: calc(var(--egg-x, 50%) - 20%);
+    border-radius: 50%;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .bubble {
+    position: absolute;
+    top: 14px;
+    left: var(--egg-x, 50%);
+    margin: 0;
+    padding: 8px 14px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text);
+    background-color: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.9);
+    animation: bubble-in 250ms var(--ease) both;
+  }
+
+  /* Own keyframes so the centering translateX survives the entrance. */
+  @keyframes bubble-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 8px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .bubble strong {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* Speech-bubble tail, pointing down at the hamster. */
+  .bubble::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: var(--surface);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+  }
+
   @media (max-width: 768px) {
     .frame :global(img) {
-      object-position: 47% 50%;
+      object-position: var(--focus-mobile, 47% 50%);
+      transform-origin: var(--focus-mobile, 47% 50%);
+    }
+
+    /* Phones crop the photo so the hamster is centered; so are target and bubble. */
+    summary {
+      left: 30%;
+    }
+
+    .bubble {
+      left: 50%;
     }
   }
 </style>

@@ -1,8 +1,10 @@
 ---
-import "@fontsource-variable/roboto-slab";
+import "@fontsource/roboto-slab/700.css";
+import fontUrl from "@fontsource/roboto-slab/files/roboto-slab-latin-700-normal.woff2?url";
 import "../styles/global.css";
 
 import Avatar from "../components/Avatar.astro";
+import Footer from "../components/Footer.astro";
 import GithubLink from "../components/GithubLink.astro";
 import Hero from "../components/Hero.astro";
 import Tags from "../components/Tags.astro";
@@ -24,6 +26,7 @@ const ogImageAlt = "A small white hamster on a wooden ramp, mid-snack.";
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
 
     <!-- Icons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -62,6 +65,7 @@ const ogImageAlt = "A small white hamster on a wooden ramp, mid-snack.";
         <p class="intro">{profile.intro}</p>
         <Tags />
       </section>
+      <Footer />
     </main>
 
     <script is:inline>
@@ -100,6 +104,17 @@ const ogImageAlt = "A small white hamster on a wooden ramp, mid-snack.";
     box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
 
+  /* Staggered entrance: each child of the card rises 70ms after the previous one. */
+  .card > :global(*) {
+    animation: rise 600ms var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+  .card > :global(:nth-child(2)) { --i: 1; }
+  .card > :global(:nth-child(3)) { --i: 2; }
+  .card > :global(:nth-child(4)) { --i: 3; }
+  .card > :global(:nth-child(5)) { --i: 4; }
+  .card > :global(:nth-child(6)) { --i: 5; }
+
   h1 {
     margin: 24px 0 6px;
     font-family: var(--font-display);
@@ -114,7 +129,7 @@ const ogImageAlt = "A small white hamster on a wooden ramp, mid-snack.";
     margin: 0 0 20px;
     font-family: var(--font-display);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);

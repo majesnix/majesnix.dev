@@ -1,0 +1,60 @@
+---
+import { profile } from "../content";
+
+// Evaluated at build time, which in CI is the deploy time.
+const builtAt = new Date();
+const builtLabel = builtAt.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const builtIso = builtAt.toISOString().slice(0, 10);
+---
+
+<footer>
+  <span>Built with <a href="https://astro.build" rel="noreferrer">Astro</a></span>
+  <span class="sep" aria-hidden="true">·</span>
+  <a href={profile.repo} rel="noreferrer">Source</a>
+  <span class="sep" aria-hidden="true">·</span>
+  <span>Deployed <time datetime={builtIso}>{builtLabel}</time></span>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 28px auto 0;
+    padding: 0 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    animation: rise 600ms var(--ease) 480ms both;
+  }
+
+  .sep {
+    user-select: none;
+  }
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition:
+      color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>
