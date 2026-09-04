@@ -23,7 +23,10 @@
   --radius-card: 16px;
   --radius-pill: 999px;
 
-  --hero-height: 380px;
+  /* Grows with the window above ~1580px, up to 480px, so the capped photo
+     shows more of the frame instead of a strip. */
+  --hero-height: clamp(380px, 24vw, 480px);
+  --hero-max-width: 1440px;
   --coin-size: 160px;
 
   --duration: 150ms;

@@ -66,17 +66,27 @@ const fallback = hamsters[0];
     position: relative;
     height: var(--hero-height);
     overflow: hidden;
-    background-color: var(--surface);
+    background-color: var(--bg);
   }
 
+  /* The photo never renders wider than 1440px. On wider screens it sits
+     centered and its sides dissolve into the page. */
   .frame :global(img) {
     display: block;
-    width: 100%;
+    width: min(100%, var(--hero-max-width));
     height: 100%;
+    margin: 0 auto;
     object-fit: cover;
     object-position: var(--focus, 50% 60%);
     transform-origin: var(--focus, 50% 60%);
     animation: drift 24s ease-in-out infinite alternate;
+  }
+
+  @media (min-width: 1441px) {
+    .frame :global(img) {
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    }
   }
 
   /* Dissolve the photo into the page so the card rises out of it. */
@@ -98,7 +108,10 @@ const fallback = hamsters[0];
      photo; only the <summary> is the clickable area. */
   .egg {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: max(0px, calc(50% - var(--hero-max-width) / 2));
+    width: min(100%, var(--hero-max-width));
     z-index: 1;
   }
 
